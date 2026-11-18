@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ---- build stage ----
-FROM rust:1-slim-bookworm AS builder
+FROM rust:1.99-slim-bookworm AS builder
 WORKDIR /app
 
 # Cache dependencies: build a dummy binary first so this layer is only
