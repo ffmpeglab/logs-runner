@@ -4,15 +4,12 @@
 FROM rust:1.99-slim-bookworm AS builder
 WORKDIR /app
 
-# Cache dependencies: build a dummy binary first so this layer is only
-# invalidated when Cargo.toml / Cargo.lock change.
-COPY Cargo.toml Cargo.lock* ./
+COPY . .
+
 RUN mkdir src && echo 'fn main() {}' > src/main.rs \
     && cargo build --release \
     && rm -rf src target/release/logs-processor target/release/deps/logs_processor*
 
-# Build the real thing
-COPY . .
 RUN cargo build --release
 
 # ---- runtime stage ----
