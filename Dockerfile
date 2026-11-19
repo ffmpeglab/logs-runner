@@ -12,7 +12,7 @@ RUN mkdir src && echo 'fn main() {}' > src/main.rs \
     && rm -rf src target/release/logs-processor target/release/deps/logs_processor*
 
 # Build the real thing
-COPY src ./src
+COPY . .
 RUN cargo build --release
 
 # ---- runtime stage ----
