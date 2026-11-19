@@ -6,10 +6,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN mkdir src && echo 'fn main() {}' > src/main.rs \
-    && cargo build --release \
-    && rm -rf src target/release/logs-processor target/release/deps/logs_processor*
-
 RUN cargo build --release
 
 # ---- runtime stage ----
